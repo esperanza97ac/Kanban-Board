@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tablero Kanban</title>
+    <link rel="stylesheet" href="css/styles.css">  
+    <!--Drag & Drop -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+</head>
+<body>
+
+  <!-- CABECERA -->
+  <header class="topbar">
+    <div class="topbar__main">
+      <h1 class="brand">🌸 Kanban Board</h1>
+
+      <!-- ESTADÍSTICAS RÁPIDAS -->
+      <div class="stats">
+        <div class="stat stat--todo">Por hacer: <strong id="stat-todo">0</strong></div>
+        <div class="stat stat--doing">En proceso: <strong id="stat-doing">0</strong></div>
+        <div class="stat stat--done">Finalizado: <strong id="stat-done">0</strong></div>
+      </div>
+
+      <button id="btn-new" class="btn btn--primary">+ Nueva Tarea</button>
+
+      <!-- BOTÓN HAMBURGUESA -->
+      <button id="hamburger-btn" class="hamburger" aria-label="Abrir menú de filtros">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- MENÚ DESPLEGABLE HAMBURGUESA CON FILTROS -->
+    <nav id="hamburger-menu" class="menu-dropdown">
+      <h3>Filtros y Búsqueda</h3>
+      
+      <!-- Buscador por título -->
+      <div class="field">
+        <span>Buscar por título:</span>
+        <input type="text" id="filter-search" placeholder="Escribe para buscar...">
+      </div>
+
+      <!-- Filtro por persona -->
+      <div class="field">
+        <span>Persona asignada:</span>
+        <select id="filter-person">
+          <option value="">Todas</option>
+        </select>
+      </div>
+
+      <!-- Filtro por importancia / prioridad -->
+      <div class="field">
+        <span>Importancia:</span>
+        <select id="filter-priority">
+          <option value="">Todas</option>
+          <option value="Alta">Alta</option>
+          <option value="Media">Media</option>
+          <option value="Baja">Baja</option>
+        </select>
+      </div>
+
+      <!-- Filtro por fecha -->
+      <div class="field">
+        <span>Fecha límite:</span>
+        <input type="date" id="filter-date">
+      </div>
+      
+      <button id="btn-clear-filters" class="btn btn--sm btn--ghost">Limpiar filtros</button>
+    </nav>
+  </header>
+
+  <!-- TABLERO KANBAN (3 columnas fijas) -->
+  <main id="board" class="board">
+    <!-- Columna: Por Hacer -->
+    <section class="column column--todo">
+      <header class="column__header">
+        <h2 class="column__title">Por Hacer</h2>
+        <span class="column__count" data-count="todo">0</span>
+      </header>
+      <div class="column__list" data-status="todo"></div>
+    </section>
+
+    <!-- Columna: En Proceso -->
+    <section class="column column--doing">
+      <header class="column__header">
+        <h2 class="column__title">En Proceso</h2>
+        <span class="column__count" data-count="doing">0</span>
+      </header>
+      <div class="column__list" data-status="doing"></div>
+    </section>
+
+    <!-- Columna: Finalizado -->
+    <section class="column column--done">
+      <header class="column__header">
+        <h2 class="column__title">Finalizado</h2>
+        <span class="column__count" data-count="done">0</span>
+      </header>
+      <div class="column__list" data-status="done"></div>
+    </section>
+  </main>
+
+  <!-- MODAL: CREAR TAREA -->
+  <div id="modal-create" class="modal" aria-hidden="true">
+    <div class="modal__overlay" data-close></div>
+    <div class="modal__box">
+      <header class="modal__header">
+        <h2>Crear Nueva Tarea</h2>
+        <button class="icon-btn" data-close>✕</button>
+      </header>
+      <form id="form-create" class="form">
+        <label class="field">
+          <span>Título *</span>
+          <input type="text" name="title" required minlength="3">
+        </label>
+
+        <label class="field">
+          <span>Descripción</span>
+          <textarea name="description" rows="3"></textarea>
+        </label>
+
+        <div class="form__row">
+          <label class="field">
+            <span>Prioridad</span>
+            <select name="priority">
+              <option value="Baja">Baja</option>
+              <option value="Media" selected>Media</option>
+              <option value="Alta">Alta</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Fecha Límite</span>
+            <input type="date" name="dueDate">
+          </label>
+        </div>
+
+        <label class="field">
+          <span>Asignado a</span>
+          <select name="assignee" id="create-assignee"></select>
+        </label>
+
+        <footer class="form__actions">
+          <button type="button" class="btn btn--ghost" data-close>Cancelar</button>
+          <button type="submit" class="btn btn--primary">Crear Tarea</button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: DETALLE, EDICIÓN Y COMENTARIOS -->
+  <div id="modal-detail" class="modal" aria-hidden="true">
+    <div class="modal__overlay" data-close></div>
+    <div class="modal__box modal__box--wide">
+      <header class="modal__header">
+        <h2>Detalle de Tarea</h2>
+        <button class="icon-btn" data-close>✕</button>
+      </header>
+
+      <!-- Edición Título y Descripción -->
+      <form id="form-detail" class="form">
+        <label class="field">
+          <span>Título</span>
+          <input type="text" name="title" required minlength="3">
+        </label>
+
+        <label class="field">
+          <span>Descripción</span>
+          <textarea name="description" rows="3"></textarea>
+        </label>
+
+        <div class="form__row">
+          <label class="field">
+            <span>Prioridad</span>
+            <select name="priority">
+              <option value="Baja">Baja</option>
+              <option value="Media">Media</option>
+              <option value="Alta">Alta</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Fecha Límite</span>
+            <input type="date" name="dueDate">
+          </label>
+        </div>
+
+        <label class="field">
+          <span>Asignado a</span>
+          <select name="assignee" id="detail-assignee"></select>
+        </label>
+
+        <div class="form__actions form__actions--split">
+          <button type="button" id="btn-delete" class="btn btn--danger">Eliminar Tarea</button>
+          <div>
+            <button type="button" class="btn btn--ghost" data-close>Cancelar</button>
+            <button type="submit" class="btn btn--primary">Guardar Cambios</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- SECCIÓN DE COMENTARIOS -->
+      <section class="comments">
+        <h3>Comentarios</h3>
+        <ul id="comment-list" class="comments__list"></ul>
+
+        <form id="form-comment" class="comment-form">
+          <input type="text" name="author" placeholder="Tu nombre" required>
+          <div class="comment-form__row">
+            <input type="text" name="text" placeholder="Escribe un comentario..." required>
+            <button type="submit" class="btn btn--primary btn--sm">Enviar</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICACIÓN -->
+  <div id="toast" class="toast"></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

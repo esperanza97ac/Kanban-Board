@@ -1,0 +1,9 @@
+# Dependencias
+node_modules/
+
+node_modules/
+.env
+.env.local
+.DS_Store
+.vscode/
+*.log
