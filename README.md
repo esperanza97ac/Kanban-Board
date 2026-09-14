@@ -1,23 +1,6 @@
-# 🌸 Tablero Kanban Interactivo (Gestión de Tareas)
+🌸 Tablero Kanban (Gestión de Tareas)
 
 Un tablero Kanban interactivo para la gestión de tareas en tiempo real, desarrollado con **HTML5 semántico**, **CSS3 adaptativo** y **JavaScript modular (ES Modules)** apoyado por una API REST local mediante `json-server`.
-
----
-
-## 📋 Tabla de Contenidos
-- [Demostración y Evidencia](#-demostración-y-evidencia)
-- [Características Principales](#-características-principales)
-- [Arquitectura del Proyecto](#-arquitectura-del-proyecto)
-- [Requisitos No Funcionales Cumplidos](#-requisitos-no-funcionales-cumplidos)
-- [Instalación y Configuración](#-instalación-y-configuración)
-- [Uso y Flujo de Trabajo](#-uso-y-flujo-de-trabajo)
-- [Tecnologías Utilizadas](#-tecnologías-utilizadas)
-
----
-
-## 📹 Demostración y Evidencia
-
-> **Nota sobre el Despliegue:** Dado que la aplicación requiere un backend/API REST local (`server.js` + `db.json`), la funcionalidad completa con persistencia de datos requiere ejecución local.
 
 ---
 
