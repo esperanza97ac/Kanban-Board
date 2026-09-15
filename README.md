@@ -12,6 +12,13 @@ Aplicación web tipo Trello/Kanban para equipos de desarrollo. Permite organizar
 - Stitch para wireframes y mockups
 - GitHub, GitHub Projects y Visual Studio Code
 
+### Instalación y Ejecución de `json-server`
+
+Para poner en marcha la API simulada, se instala json-server de forma global con el comando:
+npm install -g json-server 
+A continuación, en la raíz del proyecto, donde se encuentra el archivo db.json, y se ejecuta: json-server --watch db.json --port 5500 
+para levantar el servidor en http://localhost:5500, de modo que la aplicación pueda realizar las peticiones fetch a los endpoints REST definidos en dicho archivo.
+
 ## Funcionalidades
 
 - Tablero Kanban con columnas: Por Hacer, En Proceso y Finalizado.
