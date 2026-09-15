@@ -27,7 +27,7 @@ Aplicación web tipo Trello/Kanban para equipos de desarrollo. Permite organizar
 - Buscador en tiempo real por título.
 - Menú de navegación responsive con hamburguesa gestionado con JavaScript Vanilla.
 
-## Estructura del proyecto
+## Arquitectura del proyecto
 
 ```text
 .
@@ -35,10 +35,14 @@ Aplicación web tipo Trello/Kanban para equipos de desarrollo. Permite organizar
 ├── css/
 │   └── styles.css
 ├── js/
-│   ├── main.js
 │   ├── api.js
-│   └── ui.js
-├── assets/
-│   └── img/
+│   ├── app.js
+│   ├── config.js
+|   └── ui.js
 ├── db.json
+├── .gitignore
+├── .env
+├── package-lock.json
+├── package.json
+├── server.js
 └── README.md
