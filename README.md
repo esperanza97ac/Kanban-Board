@@ -34,6 +34,10 @@ para levantar el servidor en http://localhost:5500, de modo que la aplicación p
 - Buscador en tiempo real por título.
 - Menú de navegación responsive con hamburguesa gestionado con JavaScript Vanilla.
 
+EXTRAS
+- Registro de usuarios (POST /users) y asignación de un responsable a cada tarjeta.
+- Clasificación de tarjetas por categorías y filtrar el tablero por prioridad, etiqueta o usuario asignado.
+
 ## Arquitectura del proyecto
 
 ```text
