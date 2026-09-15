@@ -55,7 +55,7 @@ button { cursor: pointer; }
 .stat--doing { background: var(--peach); }
 .stat--done { background: var(--mint); }
 
-/* BOTÓN HAMBURGUESA A LA DERECHA DEL TODO */
+/* BOTÓN HAMBURGUESA*/
 .hamburger {
   display: flex;
   flex-direction: column;
@@ -67,7 +67,7 @@ button { cursor: pointer; }
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 8px;
-  margin-left: auto; /* Fuerza la posición a la derecha del todo */
+  margin-left: auto; 
 }
 .hamburger span {
   display: block;
@@ -76,7 +76,7 @@ button { cursor: pointer; }
   border-radius: 2px;
 }
 
-/* MENÚ DESPLEGABLE HAMBURGUESA CON FILTROS */
+/* MENÚ DESPLEGABLE FILTROS */
 .menu-dropdown {
   display: none;
   position: absolute;

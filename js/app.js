@@ -20,7 +20,7 @@ async function loadTasks() {
   }
 }
 
-/* Drag & Drop con PATCH */
+/* Drag & Drop */
 function initSortable() {
   document.querySelectorAll(".column__list").forEach((list) => {
     Sortable.create(list, {
@@ -59,7 +59,7 @@ async function handleCreate(e) {
     priority:    data.get("priority"),
     dueDate:     data.get("dueDate") || "",
     assignee:    data.get("assignee") || "",
-    status:      "todo", // por defecto a Por Hacer
+    status:      "todo",
   };
 
   try {
@@ -170,7 +170,7 @@ function initHamburgerAndFilters() {
     menu.classList.toggle("is-open");
   });
 
-  // Búsqueda en tiempo real por título
+  // Búsqueda por título
   $("#filter-search").addEventListener("input", (e) => {
     state.filters.search = e.target.value;
     ui.renderBoard(state.tasks, state.filters);
