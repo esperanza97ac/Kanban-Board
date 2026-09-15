@@ -15,6 +15,24 @@
       "priority": "Media",
       "dueDate": "2026-09-10",
       "status": "doing"
+    },
+    {
+      "title": "Fronted",
+      "description": "Bonito",
+      "priority": "Baja",
+      "dueDate": "2026-09-25",
+      "assignee": "Lucía Pérez",
+      "status": "todo",
+      "id": "z3hM3Gk"
+    },
+    {
+      "title": "Gato",
+      "description": "Precioso",
+      "priority": "Baja",
+      "dueDate": "2026-09-11",
+      "assignee": "Carlos Ruiz",
+      "status": "done",
+      "id": "1TPSAZu"
     }
   ],
   "comments": [

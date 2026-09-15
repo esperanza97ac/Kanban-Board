@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tablero Kanban</title>
     <link rel="stylesheet" href="css/styles.css">  
+    <link rel="icon" href="data:,">
+
     <!--Drag & Drop -->
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 </head>
@@ -15,7 +17,7 @@
     <div class="topbar__main">
       <h1 class="brand">🌸 Kanban Board</h1>
 
-      <!-- ESTADÍSTICAS RÁPIDAS -->
+      <!-- RECUENTO -->
       <div class="stats">
         <div class="stat stat--todo">Por hacer: <strong id="stat-todo">0</strong></div>
         <div class="stat stat--doing">En proceso: <strong id="stat-doing">0</strong></div>
@@ -102,7 +104,7 @@
   </main>
 
   <!-- CREAR TAREA -->
-  <div id="modal-create" class="modal" aria-hidden="true">
+  <div id="modal-create" class="modal modal is-open">
     <div class="modal__overlay" data-close></div>
     <div class="modal__box">
       <header class="modal__header">
@@ -150,7 +152,7 @@
   </div>
 
   <!-- MODAL: DETALLE, EDICIÓN Y COMENTARIOS -->
-  <div id="modal-detail" class="modal" aria-hidden="true">
+<div id="modal-create" class="modal" aria-hidden="true">
     <div class="modal__overlay" data-close></div>
     <div class="modal__box modal__box--wide">
       <header class="modal__header">
